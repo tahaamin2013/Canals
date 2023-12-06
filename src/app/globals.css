@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+ 
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+ 
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+ 
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+ 
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+ 
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+ 
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+ 
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+ 
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+ 
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+ 
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+ 
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+
+#envelope-wrapper {
+  border: 2px solid #14a800;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  overflow: hidden;
+  padding: 7px;
+  width: 200px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 5px;
+} 
+
+#envelope {
+  position: relative;
+  width: 45px;
+  height: 30px;
+  margin-left: 34%;
+}
+.sent #envelope {
+  animation: letterSend 1s ease-in-out 2s;
+}
+
+#envelope-inside {
+  position: absolute;
+  top: 0;
+  left: 0; 
+  height: 100%;
+  width: 100%;
+  background-color: #0e7c00;
+  z-index: 1;
+}
+#envelope-body {
+  position: absolute;
+  top: 0;
+  left: 0; 
+  z-index: 20;
+  height: 30px;
+  width: 45px;
+}
+#left-half {
+  position: absolute;
+  width: 0; 
+  height: 0; 
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid #14a800;
+  border-right: 22px solid transparent;
+  border-left: 22px solid #14a800;
+}
+#right-half {
+  position: absolute;
+  width: 0; 
+  height: 0; 
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid #14a800;
+  border-left: 22px solid transparent;
+  border-right: 22px solid #14a800;
+}
+
+#envelope-top {
+  position: absolute;
+  top: 0;
+  left: 0; 
+  z-index: 30;
+  margin-left: 2px;
+  
+  border-top: 14px solid #14a800;
+  border-left: 21px solid transparent;
+  border-right: 18px solid transparent;
+  transform-origin: top;
+}
+.sent #envelope-top {
+  animation: envelopeClose 2s ease-in-out;
+}
+
+#letter {
+  position: absolute;
+  top: 0;
+  left: 2px;
+  height: 28px;
+  width: 41px;
+  z-index: 18;
+  background-color: #e7e7e7;
+}
+.sent #letter {
+  animation: letterDrop 1s ease-in-out;
+}
+
+
+.btn-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #14a800;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 80;
+  font-size: 1rem;
+}
+.sent .btn-overlay {
+  animation: fadeOut 0.4s ease-out;
+  opacity: 0;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1
+  }
+  to {
+    opacity: 0;
+  }
+} 
+
+@keyframes letterDrop {
+  from {
+    transform: translateY(-300px);
+  }
+  to {
+    transform: translateY(0);
+  }
+} 
+
+@keyframes envelopeClose {
+  0% {
+    transform: rotateX(270deg);
+  }
+  50% {
+    transform: rotateX(270deg);
+  }
+  100% {
+    transform: rotateX(0deg); 
+  }
+}
+
+@keyframes letterSend {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-30px);
+  }
+  40% {
+    transform: translateX(-30px);
+  }
+  100% {
+    transform: translateX(1000px);
+  }
+}
